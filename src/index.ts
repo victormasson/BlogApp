@@ -1,4 +1,8 @@
 import Server from "./server";
 
-const server = new Server(4000, 'mongodb://localhost:27017/blog')
+// mongodb connection
+let mongoConnectionLaptop: string = 'mongodb://localhost:27017/blog' // My laptop connection
+let mongoConnectionRaspberry: string = 'mongodb://192.168.1.37:27017/blog' // My raspberry connection
+
+const server = new Server(4000, mongoConnectionLaptop)
 server.start();
