@@ -13,5 +13,4 @@ let articleSchema = new mongoose.Schema({
         }
     ]
 });
-let article = mongoose.model('Article', articleSchema);
-exports.default = article;
+exports.default = mongoose.model('Article', articleSchema);

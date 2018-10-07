@@ -19,8 +19,8 @@
     "sort-imports": [
       "error",
       {
-        "ignoreCase": false,
-        "ignoreMemberSort": false,
+        "ignoreCase": true,
+        "ignoreMemberSort": true,
         "memberSyntaxSortOrder": [
           "none",
           "all",

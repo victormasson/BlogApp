@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const Article_1 = require("../models/Article");
-let router = express.Router();
+const Express = require("express");
+const Article_1 = require("../dbModels/Article");
+let router = Express.Router();
 /**
  * Get all articles
  * @returns collection of articles

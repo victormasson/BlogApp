@@ -14,5 +14,4 @@ tagSchema.virtual('articles', {
   foreignField: 'tags'
 })
 
-let tag = mongoose.model('Tag', tagSchema)
-export default tag
+export default mongoose.model('Tag', tagSchema)

@@ -1,19 +1,15 @@
-import * as express from 'express'
+import * as Express from 'express'
 import { Request, Response } from 'express'
-import Article from '../models/Article'
-import { error } from 'util';
-import { resolve } from 'url';
-import { rejects } from 'assert';
-import article from '../models/Article';
+import DbArticle from '../dbModels/Article'
 
-let router = express.Router()
+let router = Express.Router()
 
 /**
  * Get all articles
  * @returns collection of articles
  */
 router.get('/', (req: Request, res: Response) => {
-  Article.find({})
+  DbArticle.find({})
     .populate('tags')
     .then(articles => {
       res.send(articles)
@@ -25,7 +21,7 @@ router.get('/', (req: Request, res: Response) => {
  * @returns an article
  */
 router.get('/:id', (req: Request, res: Response) => {
-  Article.findById(req.params.id)
+  DbArticle.findById(req.params.id)
     .populate('tags')
     .then(article => {
       res.send(article)

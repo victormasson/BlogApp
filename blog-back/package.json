@@ -28,12 +28,14 @@
     "@types/helmet": "0.0.42",
     "@types/mongoose": "^5.2.18",
     "@types/morgan": "^1.7.35",
+    "@types/socket.io": "^1.4.38",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
     "mongoose": "^5.3.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "socket.io": "^2.1.1"
   }
 }
