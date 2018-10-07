@@ -13,5 +13,4 @@ tagSchema.virtual('articles', {
     localField: '_id',
     foreignField: 'tags'
 });
-let tag = mongoose.model('Tag', tagSchema);
-exports.default = tag;
+exports.default = mongoose.model('Tag', tagSchema);

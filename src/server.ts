@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
 import * as express from 'express'
+import * as http from 'http'
+import socketChat from './routes/chat'
 import * as mongoose from 'mongoose'
 import * as bodyParser from 'body-parser'
 import * as compression from 'compression'
@@ -8,23 +10,30 @@ import * as helmet from 'helmet'
 import * as cors from 'cors';
 
 // models
-import * as Article from './models/Article'
-import * as Tag from './models/Tag'
+import DbArticle from './dbModels/Article'
+import DbTag from './dbModels/Tag'
+import DbUser from './dbModels/User';
+import DbMessage from './dbModels/Message'
 
 // router
-import * as articlesRouter from './routes/articles'
-import * as tagsRouter from './routes/tags'
+import articlesRouter from './routes/articles'
+import tagsRouter from './routes/tags'
+import usersRouter from './routes/users'
 
 
 export default class Server {
   readonly port: number
   readonly mongoUri: string
   public app: express.Application
+  public httpServer: http.Server
 
   constructor(port: number, mongoUri: string) {
     this.port = port
     this.mongoUri = mongoUri
+
     this.app = express()
+    this.httpServer = new http.Server(this.app)
+    new socketChat(this.httpServer)
     this.config()
     this.routes()
   }
@@ -43,8 +52,12 @@ export default class Server {
     mongoose.connect(this.mongoUri, () => {
       console.log(`mongoose run on ${this.mongoUri}`)
     })
-    Article.default
-    Tag.default
+
+    // model definition
+    DbArticle
+    DbTag
+    DbUser
+    DbMessage
 
     // config
     this.app
@@ -57,7 +70,8 @@ export default class Server {
   }
 
   public routes(): void {
-    this.app.use('/api/articles', articlesRouter.default)
-    this.app.use('/api/tags', tagsRouter.default)
+    this.app.use('/api/articles', articlesRouter)
+    this.app.use('/api/tags', tagsRouter)
+    this.app.use('/api/users', usersRouter)
   }
 }

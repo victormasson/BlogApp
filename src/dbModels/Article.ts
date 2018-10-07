@@ -13,5 +13,4 @@ let articleSchema = new mongoose.Schema({
   ]
 })
 
-let article = mongoose.model('Article', articleSchema)
-export default article
+export default mongoose.model('Article', articleSchema)
