@@ -5,6 +5,23 @@ import DbArticle from '../dbModels/Article'
 let router = Express.Router()
 
 /**
+ * Get an article
+ * @returns an article
+ */
+router.get('/:id', (req: Request, res: Response) => {
+  DbArticle.findById(req.params.id)
+    .populate('tags')
+    .then(article => {
+      res.status(200)
+        .send(article)
+    })
+    .catch(err => {
+      console.log(err)
+      res.send(err)
+    })
+})
+
+/**
  * Get all articles
  * @returns collection of articles
  */
@@ -14,17 +31,8 @@ router.get('/', (req: Request, res: Response) => {
     .then(articles => {
       res.send(articles)
     })
-})
-
-/**
- * Get an article
- * @returns an article
- */
-router.get('/:id', (req: Request, res: Response) => {
-  DbArticle.findById(req.params.id)
-    .populate('tags')
-    .then(article => {
-      res.send(article)
+    .catch(err => {
+      console.log(err)
     })
 })
 

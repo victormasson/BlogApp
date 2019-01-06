@@ -5,7 +5,7 @@ const Menu = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a className="navbar-brand" href="/">Beer App</a>
+        <a className="navbar-brand" href="/">Blog App</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
@@ -13,12 +13,17 @@ const Menu = () => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <Link className="nav-link" to="/">
-                home
+                Home
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/articles">
-                articles
+                Articles
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/chat">
+                Chat
               </Link>
             </li>
             <li className="nav-item">

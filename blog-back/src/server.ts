@@ -8,56 +8,59 @@ import * as compression from 'compression'
 import * as logger from 'morgan'
 import * as helmet from 'helmet'
 import * as cors from 'cors';
+import * as io from 'socket.io'
 
 // models
-import DbArticle from './dbModels/Article'
-import DbTag from './dbModels/Tag'
-import DbUser from './dbModels/User';
-import DbMessage from './dbModels/Message'
+import * as Context from './dbModels/Context'
 
 // router
 import articlesRouter from './routes/articles'
 import tagsRouter from './routes/tags'
 import usersRouter from './routes/users'
 
-
 export default class Server {
   readonly port: number
   readonly mongoUri: string
   public app: express.Application
   public httpServer: http.Server
+  public socketServer: io.Server
 
   constructor(port: number, mongoUri: string) {
     this.port = port
     this.mongoUri = mongoUri
 
     this.app = express()
-    this.httpServer = new http.Server(this.app)
-    new socketChat(this.httpServer)
+    this.httpServer = http.createServer(this.app)
     this.config()
     this.routes()
-  }
 
-  public start() {
     this.app.get('/', (req: Request, res: Response) => {
       res.send('Hello world')
     })
-    this.app.listen(this.port, () => {
-      console.log(`server run on http://localhost:${this.port}`);
+
+    this.socketServer = io.listen(this.httpServer)
+    new socketChat(this.socketServer)
+
+    // httpServer must listen to have socket, not Express app
+    this.httpServer.listen(this.port, (err: string) => {
+      if (err) {
+        console.log(err)
+      }
+      else {
+        console.log(`server run on http://localhost:${this.port}`);
+      }
     })
+
   }
 
   public config(): void {
     // set up mongoose
-    mongoose.connect(this.mongoUri, () => {
+    mongoose.connect(this.mongoUri, { useNewUrlParser: true }, () => {
       console.log(`mongoose run on ${this.mongoUri}`)
     })
 
     // model definition
-    DbArticle
-    DbTag
-    DbUser
-    DbMessage
+    Context.default
 
     // config
     this.app

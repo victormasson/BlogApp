@@ -12,12 +12,7 @@ class Link implements ILink {
   position: number
   active: boolean
 
-  constructor(name: string, path: string, position: number, active: boolean, ) {
-    this.name = name
-    this.path = path
-    this.position = position
-    this.active = active
-  }
+
 }
 
 export {

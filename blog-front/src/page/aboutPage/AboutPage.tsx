@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 // Components
-import Mycomp from '../../components/MyComp';
-import Presentation from '../../components/Presentation';
+import Mycomp from '../../components/MyComp'
+import Presentation from '../../components/Presentation'
 
-export default class About extends React.Component {
+export default class AboutPage extends React.Component {
   render() {
     return (
       <div>

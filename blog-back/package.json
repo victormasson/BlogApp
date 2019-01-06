@@ -33,6 +33,7 @@
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "guid-typescript": "^1.0.9",
     "helmet": "^3.13.0",
     "mongoose": "^5.3.1",
     "morgan": "^1.9.1",

@@ -26,11 +26,11 @@ export class Breadcrumb extends React.Component<IBreadcrumbProps> {
           {this.props.listLink.map(item =>
             item.active ? (
               <li className="breadcrumb-item active" aria-current="page" >
-                {item.name}
+                <a href={item.path}>{item.name}</a>
               </li>
             ) : (
                 <li className="breadcrumb-item">
-                  <a href={item.path}>{item.name}</a>
+                  {item.name}
                 </li>
               )
           )}

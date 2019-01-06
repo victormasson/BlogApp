@@ -25,7 +25,6 @@ export default class Presentation extends React.Component<IPresentationProps, IP
       <div>
         <p className="App-intro">
           I'm <b>{this.props.name}</b> and I'm <code>developer</code> and I'm <i>{this.renderMarried()}</i> and I'm <u>{this.state.age}</u>yo
-          {/* To get started, edit <code>src/App.tsx</code> and save to reload. */}
         </p>
       </div>
     )
